@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>zhuc</title>
+    <link href="~/css/login.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.8.0.js"></script>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                if ($("#user_pwd").val() != $("#suser_pwd").val())
+                {
+                    alert("两次密码不一致")
+                    return false;
+                }
+               $.ajax({
+                   type: "post",
+                    url: "@Url.Action("zc", "Login")",
+                    data: $("form").serialize(),
+                    success: function (msg) {
+                      if (msg.code == 200) {
+                        window.location = "@Url.Action("index","Login")";
+                       }
+                        else
+                        {
+                           alert("注册失败");
+                        }
+                   }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="login">
+       <span class="form-title">登陆</span>
+        <form method="post">
+            <div class="form-item">
+                <label>账号:</label>
+                <input type="text" name="user_name" />
+            </div>
+
+            <div class="form-item">
+                <label>密码:</label>
+                <input type="password" name="user_pwd" id="user_pwd" />
+            </div>
+            <div class="form-item">
+                <label>确认密码:</label>
+                <input type="password" name="suser_pwd" id="suser_pwd" />
+            </div>
+            <input class="btn" type="button" value="注册" />
+        </form>
+     </div>
+</body>
+</html>

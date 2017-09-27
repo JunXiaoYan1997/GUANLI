@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/buju/_LayoutPage1.cshtml";
+}
+@section Styles{
+    
+<link href="~/css/layui/css/layui.css" rel="stylesheet" />
+    }
+<br />
+@Html.ActionLink("添加","tian")
+<div class="layui-btn-group demoTable">
+    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
+    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
+    <button class="layui-btn" data-type="isAll">验证是否全选</button>
+</div>
+
+<table class="layui-table" lay-data="{width: 892, height:332, url:'@Url.Action("showdata","ModulManage")', page:true, id:'idTest'}" lay-filter="demo">
+    <thead>
+        <tr>
+            <th lay-data="{checkbox:true, fixed: true}"></th>
+            <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
+            <th lay-data="{field:'name', width:80}">模块名称</th>
+            <th lay-data="{field:'Controller', width:80, sort: true}">控制器名称</th>
+            <th lay-data="{fixed: 'right', width:160, align:'center', toolbar: '#barDemo'}"></th>
+        </tr>
+    </thead>
+</table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
+@section Script{
+    
+<script src="~/js/jquery-1.8.2.js"></script>
+<script src="~/css/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+        });
+    </script>
+    }
